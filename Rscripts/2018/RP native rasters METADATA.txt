@@ -1,0 +1,11 @@
+RP native single scale rasters METADATA
+RP = rarefaction paper
+
+Here I want to segregate 9somehow; not sure how to block yet) my results into easy to manage scripts, for this paper I want to do/chapter I will end up doing, aussi
+
+So far, I have included how to make rasters for 50-, 100- and 200-km scales 
+And plotted them
+(they're beautiful)
+
+Then I plotted the Human Influence Index, to show the concentration of anthropogenic acitvity (urbanisation, etc.) 
+

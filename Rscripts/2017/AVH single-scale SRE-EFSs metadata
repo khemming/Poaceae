@@ -1,0 +1,58 @@
+
+
+AVH paper 100 km SRE-EFs METADATA
+
+Currently it's 22/11
+
+Questions: how to get my 200 km to relate to 
+
+I am going to stick my notes in here, so parsimoneous sake for the script. Or succinctness. Alors...
+
+# Now that I have the data, what kinds of things do I want to change, given the prosepct of a scale-critiquing paper? ------------------------------
+# (1) different scales, yup.
+# (2) no, low and medium n/a values out
+# (3) how different ichao1 vs. a relationships are
+# cannot weight cells, cannot control for C3/4, this is really only checking the methods I have done so far
+# did I do them? I haven't checked missing values etc. for AVH at different scales. Let's see 'em!  
+  
+# Model nomenclature------------------------------ 
+AP: annual precipitation
+Arid: aridity
+CM: minimum temperature of the coldest month
+CQ: Precipitation of the coldest quarter
+Elev: elevation
+Evap: potential evapotranspiration
+HII: human influence index
+MAT: mean annual temperature
+PS: precipitation seasonality
+RZ: potential storage of water in the root zone 
+SP: potential storage of water in the soil profile 
+ST: potential storage of water derived from soil texture
+WM: maximum temperature of the warmest month
+CQ: Precipitation of the warmest quarter
+
+
+# avh; 
+# 1, 5, 2 for scale; 
+# a, b, c for EFs (a = all, b = redcued, c = anthropogenic only);
+# na, vl, l, m for community status;  
+# e.g. avh_1_a_vl
+# looks a bit nasty; we'll see how this goes  
+
+# EF correlation matrix -----------------------------------
+# notes from correlations:
+# can't do GLU (categorical varaible) & HII doesn't compute (?)
+
+# Notes from book: 
+# Ap ~ Aridity  ---> choose one [arid]
+# CM ~ WQ (0.6 so i dunno what do just yet)
+# PS might fit in there too?
+# -> CQ + evap/MAT and not WQ or PS 
+# MAT ~ evap
+# RZ ~ SP = ST; so take RZ
+# WM ~ MAT, evap & CQ, so perhaps ditch
+
+# notes this the excel spreadsheet:
+# MAt and WM correlated strongly with a few things each; best to drop em :) 
+# AP or arid? Well, I say keep AP cos it's a more mechanistic response from teh plant's POV (no water = death)  
+# and then we just have PS ~ CM, AP ~ WQ and SP ~ ST left. Cool. 

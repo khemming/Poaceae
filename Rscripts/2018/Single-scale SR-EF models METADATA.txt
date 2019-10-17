@@ -1,0 +1,3 @@
+Single-scale SR-EF models METADATA
+
+Model nomenclature:
