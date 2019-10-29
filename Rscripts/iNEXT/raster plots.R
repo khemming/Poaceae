@@ -1,15 +1,13 @@
 #########################################################
 # iNEXT raster plots
 #########################################################
-# date created: 30/4/19
-# last modified: 9/10 name change
 
 # aim -------------------------------------------------------------------
-# produce all the different raster plots
+# produce: C3 and C4 x
+#          native and non-native x
+#          observed and predicted and spread potential plots
 
 # library --------------------------------------------------------------
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
-
   library(gplots)
   library(RColorBrewer)
   library(raster)
@@ -24,7 +22,7 @@
   library(forcats)
   library(maps)
 
-# 1. iNEXT rarefied richness (v2 script) plots --------------------------
+# 1. iNEXT plots ----------------------------------------------------------
 # 1.1 raster maps ---------------------------------------------------------
 # function -- remember legend (leg) requirements
   eng_ras <- function (raster, save, leg)  
@@ -92,236 +90,6 @@
   eng_ras(e.c3, "Exotic.C3.jpeg", c(1, cellStats(n.c3, stat = 'max', na.rm = T))) # n max is higher
 # exotic c4 
   eng_ras(e.c4, "Exotic.C4.jpeg", c(1, cellStats(n.c4, stat = 'max', na.rm = T))) # n max is incredibly higher
-  
-# 2.2. raster scatterplots -------------------------------  
-# scatterlot function ------------------------------------  
-# data 
-  rare.rich <- as.data.frame(getValues(c.stack))
-
-# setwd()
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/iNEXT/Graphs/observed 15 rec 0.8 cov warn removed")
-
-# total-total
-  xlab <- "Native total"
-  ylab <- "Exotic total" 
-  save <- "Native total-exotic total.jpeg"
-  
-  tot.cor <- round(cor(rare.rich$n.tot, rare.rich$e.tot, use = "complete.obs", method = "spearman"), 2)
-  tot.cor
-  
-  a <- ggplot(aes(x = n.tot, y = e.tot), data = rare.rich) +
-    geom_point(size = 1.5) +
-    theme_bw() + 
-    labs(x = xlab,
-         y = ylab) +
-    theme(axis.title = element_text(size = 14)) +
-    geom_abline(intercept = 0, slope = 1, size = 1) +
-    annotate("text", x = 130, y = 60, label = "r = 0.27", size = 6)
-    
-  
-  ggsave(save, plot = last_plot(), dpi = 500, scale = 1, device = "jpeg")
-  
-  a
-  
-# C3-C3
-  xlab <- "Native C3"
-  ylab <- "Exotic C3" 
-  save <- "Native C3-exotic C3.jpeg"
-  
-  c3.cor <- round(cor(rare.rich$n.c3, rare.rich$e.c3, use = "complete.obs", method = "spearman"), 2)
-  c3.cor
-  
-  b <- ggplot(aes(x = n.c3, y = e.c3), data = rare.rich) +
-    geom_point(size = 1.5) +
-    theme_bw() + 
-    labs(x = xlab,
-         y = ylab) +
-    theme(axis.title = element_text(size = 14)) +
-    geom_abline(intercept = 0, slope = 1, size = 1) +
-    annotate("text", x = 40, y = 35, label = "r = 0.67", size = 6)
-  
-  
-  ggsave(save, plot = last_plot(), dpi = 500, scale = 1, device = "jpeg")
-  
-  b
-
-# C4-C4    
-  xlab <- "Native C4"
-  ylab <- "Exotic C4" 
-  save <- "Native C4-exotic C4.jpeg"
-  
-  c4.cor <- round(cor(rare.rich$n.c4, rare.rich$e.c4, use = "complete.obs", method = "spearman"), 2) # 0.51
-  c4.cor
-  
-  c <- ggplot(aes(x = n.c4, y = e.c4), data = rare.rich) +
-    geom_point(size = 1.5) +
-    theme_bw() + 
-    labs(x = xlab,
-         y = ylab) +
-    theme(axis.title = element_text(size = 14)) +
-    geom_abline(intercept = 0, slope = 1, size = 1) +
-    annotate("text", x = 135, y = 48, label = "r = 0.48", size = 6)
-  
-  
-  ggsave(save, plot = last_plot(), dpi = 500, scale = 1, device = "jpeg")
-  
-  c
-  
-# nat:c3-c4  
-  xlab <- "native C3"
-  ylab <- "native C4" 
-  save <- "Native C3-native C4.jpeg"
-  
-  c3.c4.cor <- round(cor(rare.rich$n.c4, rare.rich$n.c3, use = "complete.obs", method = "spearman"), 2) # 
-  c3.c4.cor
-  
-  d <- ggplot(aes(x = n.c4, y = n.c3), data = rare.rich) +
-    geom_point(size = 1.5) +
-    theme_bw() + 
-    labs(x = xlab,
-         y = ylab) +
-    theme(axis.title = element_text(size = 14)) +
-    #geom_abline(slope = -1, intercept = 45, size = 1) +
-    annotate("text", x = 115, y = 48, label = "r = -0.41", size = 6)
-  
-  ggsave(save, plot = last_plot(), dpi = 500, scale = 1, device = "jpeg")
-  
-  d
-  
-  
-# exotic:c3-c4
-  xlab <- "Exotic C3"
-  ylab <- "Exotic C4" 
-  save <- "Exotic C3-exotic C4.jpeg"
-  
-  c3.c4.cor <- round(cor(rare.rich$e.c4, rare.rich$e.c3, use = "complete.obs", method = "spearman"), 2) # 
-  c3.c4.cor
-  
-  ggplot(aes(x = e.c4, y = e.c3), data = rare.rich) +
-    geom_point(size = 1.5) +
-    theme_bw() + 
-    labs(x = xlab,
-         y = ylab) +
-    theme(axis.title = element_text(size = 14)) +
-    #geom_abline(slope = -1, intercept = 45, size = 1) +
-    annotate("text", x = 45, y = 40, label = "r = 0.20", size = 6)
-  
-  ggsave(save, plot = last_plot(), dpi = 500, scale = 1, device = "jpeg")
-  
-# -------------------------------------------------------------------
- 
-  
-# 3. iNEXT model coefficients --------------------------------------
-# Load model workspace (from iNEXT model v1)
-  rm(list = ls())
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
-  load("Results/iNEXT/Rdata/model_coefficients.RData")
-
-# EV order rearrange: to do so, change at the beginning of iNEXT model v_ script   
-# environmental variable labels
-  ev.levels <- c("pcoldq", "pwarmq", "amt", "ts", "arid", "pewc", "th", "hii")
-  
-  ev.labels <- c("Winter \nrainfall", 
-               "Summer \nrainfall", 
-               "Annual mean \ntemperature", 
-               "Temperature \nseasonality", 
-               "Aridity", 
-               "Soil water \navailability", 
-               "Topographic \nheterogeneity", 
-               "Human \nactivity")
-
-# reorder levels in spp dfs to match EV labels
-  tot.rich$plot.names <- factor(ev.labels, ordered = is.ordered(ev.labels))
-  tot.rich$plot.names <- fct_inorder(tot.rich$plot.names)
-  
-  c3.rich$plot.names <- factor(ev.labels, ordered = is.ordered(ev.labels))
-  c3.rich$plot.names <- fct_inorder(c3.rich$plot.names)
-  
-  c4.rich$plot.names <- factor(ev.labels, ordered = is.ordered(ev.labels))
-  c4.rich$plot.names <- fct_inorder(c4.rich$plot.names)
-  
-# total -------------------------------------------------------------------
-# tot adjusted r2 & position: x = 1, y = 15, label = "Adj. r2 = exotic 0.46, native 0.50"
-  n <- ggplot(tot.rich, aes(x = plot.names, color = status)) +
-    theme_classic() +
-    scale_color_manual(labels = c("Exotic", "Native"), values = c("blue", "red")) +
-    geom_hline(aes(yintercept = 0),
-               color = "black", size = 0.6) +
-    labs(title = "", x = "Environmental and anthropogenic variables", y = "Parameter estimate", color = "grey100") +
-    geom_point(aes(y = estimate), size = 5, position = position_dodge(width = 0.6)) +
-    geom_errorbar(aes(ymin = lower.ci, ymax = upper.ci),
-                  size = 1, width = 0, position = position_dodge(width = 0.6)) +
-    annotate("segment", x = -Inf, xend = Inf, y = -Inf, yend = -Inf) +
-    annotate("segment", x = -Inf, xend = -Inf,y = -Inf, yend = Inf) + 
-    annotate("text", x = 7, y = 15, label = "Adj. r2 = exotic 0.46, native 0.50")
-  
-  #ggThemeAssistGadget(h)
-  
-  n + theme(axis.text = element_text(size = 12, colour = "gray0"),
-            axis.text.x = element_text(size = 12, angle = 45, hjust = 1), 
-            axis.text.y = element_text(size = 12), 
-            axis.title = element_text(size = 16),
-            legend.text = element_text(size = 14), 
-            legend.title = element_blank(), 
-            axis.ticks.length = unit(0.2, "cm")) 
-  
-  ggsave("Results/iNEXT/Graphs/observed 15 rec 0.8 cov warn removed/Total coefficients.jpeg", plot = last_plot(), scale = 1, dpi = 500, device = "jpeg")
-  
-  
-# C3 -------------------------------------------------------------------
-# c3 adjusted r2 & position: x = 7, y = 5, label = "Adj. r2 = exotic 0.40, native 0.74"
-  i <- ggplot(c3.rich, aes(x = plot.names, color = status)) +
-    theme_classic() +
-    scale_color_manual(labels = c("Exotic", "Native"), values = c("blue", "red")) +
-    geom_hline(aes(yintercept = 0),
-               color = "black", size = 0.6) +
-    labs(title = "", x = "Environmental and anthropogenic variables", y = "Parameter estimate", color = "grey100") +
-    geom_point(aes(y = estimate), size = 5, position = position_dodge(width = 0.6)) +
-    geom_errorbar(aes(ymin = lower.ci, ymax = upper.ci),
-                  size = 1, width = 0, position = position_dodge(width = 0.6)) +
-    annotate("segment", x = -Inf, xend = Inf, y = -Inf, yend = -Inf) +
-    annotate("segment", x = -Inf, xend = -Inf,y = -Inf, yend = Inf) + 
-    annotate("text", x = 7, y = 5, label = "Adj. r2 = exotic 0.40, native 0.74")
-  
-  #ggThemeAssistGadget(h)
-  
-  i + theme(axis.text = element_text(size = 12, colour = "gray0"),
-            axis.text.x = element_text(size = 12, angle = 45, hjust = 1), 
-            axis.text.y = element_text(size = 12), 
-            axis.title = element_text(size = 16),
-            legend.text = element_text(size = 14), 
-            legend.title = element_blank(), 
-            axis.ticks.length = unit(0.2, "cm")) 
-  
-  ggsave("Results/iNEXT/Graphs/observed 15 rec 0.8 cov warn removed/C3 coefficients.jpeg", plot = last_plot(), scale = 1, dpi = 500, device = "jpeg")
-  
-# C4 ---------------------------------------------------------------
-# c4 position and r2: x = 7, y = 20, label = "Adj. r2 = exotic 0.41, native 0.57"
-  
-  j <- ggplot(c4.rich, aes(x = plot.names, color = status)) +
-    theme_classic() +
-    scale_color_manual(labels = c("Exotic", "Native"), values = c("blue", "red")) +
-    geom_hline(aes(yintercept = 0),
-               color = "black", size = 0.6) +
-    labs(title = "", x = "Environmental and anthropogenic variables", y = "Parameter estimate", color = "grey100") +
-    geom_point(aes(y = estimate), size = 5, position = position_dodge(width = 0.6)) +
-    geom_errorbar(aes(ymin = lower.ci, ymax = upper.ci),
-                  size = 1, width = 0, position = position_dodge(width = 0.6)) +
-    annotate("segment", x = -Inf, xend = Inf, y = -Inf, yend = -Inf) +
-    annotate("segment", x = -Inf, xend = -Inf,y = -Inf, yend = Inf) + 
-    annotate("text", x = 7, y = 20, label = "Adj. r2 = exotic 0.41, native 0.57")
-  
-  #ggThemeAssistGadget(h)
-  
-  j + theme(axis.text = element_text(size = 12, colour = "gray0"),
-            axis.text.x = element_text(size = 12, angle = 45, hjust = 1), 
-            axis.text.y = element_text(size = 12), 
-            axis.title = element_text(size = 16),
-            legend.text = element_text(size = 14), 
-            legend.title = element_blank(), 
-            axis.ticks.length = unit(0.2, "cm")) 
-  
-  ggsave("Results/iNEXT/Graphs/observed 15 rec 0.8 cov warn removed/C4 coefficients.jpeg", plot = last_plot(), scale = 1, dpi = 500, device = "jpeg")
   
 
 

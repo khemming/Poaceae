@@ -1,23 +1,17 @@
 ########################################################
 # cleaning step 2: cleaning missing ALA data
 ########################################################
-# date created: 17/5
-# last updated: 
 
 # aim ------------------------------------------------------------
-# remove records with missing data: species, hybrids, year, location data, and duplicates etc.
+# remove records with missing data: species, year, location data; amalgamate duplicates; remove hybrids and varieties
 
 # library --------------------------------------------------------
   library(tidyverse)
   library(data.table)
   
-  rm(list = ls())
-  
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Data files")
-  
 # data --------------------------------------------------------------------
 # read in RDS file (note this was downloaded as CSV and I converted it to save space)
-  ala.raw <- readRDS("ALA/Supplied data/records-2019-03-01.rds")
+  ala.raw <- readRDS("Data files/ALA/Supplied data/records-2019-03-01.rds")
   
 # required columns listed in header csv
   ala.header <- read.csv("ALA/Supplied data/records-2019-03-01 headings.csv", header = T) %>%

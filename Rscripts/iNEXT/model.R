@@ -64,19 +64,19 @@
   m.n.c4.sum <- tidy(m.n.c4)
   m.n.c4.ci <- confint(m.n.c4)
    
-# exotic total 
+# non-native total 
   m.e.tot <- lm(e.tot ~ pcoldq + pwarmq * amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
   summary(m.e.tot) 
   m.e.tot.sum <- tidy(m.e.tot)
   m.e.tot.ci <- confint(m.e.tot)
   
-# exotic C3  
+# non-native C3  
   m.e.c3 <- lm(e.c3 ~ pcoldq + pwarmq * amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
   summary(m.e.c3) 
   m.e.c3.sum <- tidy(m.e.c3)
   m.e.c3.ci <- confint(m.e.c3)
 
-# exotic C4
+# non-native C4
   m.e.c4 <- lm(e.c4 ~ pcoldq + pwarmq * amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
   summary(m.e.c4) 
   m.e.c4.sum <- tidy(m.e.c4)
@@ -86,11 +86,11 @@
 # note we are dropping prop.cover
 # Status (n/e) | coefficient (evs) | mean | lower.ci | upper.ci
   spp.ev.mat <- matrix(ncol = 5, nrow = 16)  
-  spp.ev.mat[,1] <- rep(c("native", "exotic"), each = 8)
+  spp.ev.mat[,1] <- rep(c("native", "non-native"), each = 8)
   spp.ev.mat[,2] <- rep(vs.evs[3:10], 2)
   colnames(spp.ev.mat) <- c("status", "coef", "estimate", "lower.ci", "upper.ci")
 
-# one for each total, C3 and C4 richness (i.e. native and exotic will be plotted together) 
+# one for each total, C3 and C4 richness (i.e. native and non-native will be plotted together) 
   tot.rich <- spp.ev.mat
   c3.rich <- spp.ev.mat
   c4.rich <- spp.ev.mat
@@ -100,21 +100,21 @@
 # total native  
   tot.rich[1:8, 3] <- m.n.tot.sum$estimate[2:9]
   tot.rich[1:8, 4:5] <- m.n.tot.ci[2:9, ]
-# total exotic  
+# total non-native  
   tot.rich[9:16, 3] <- m.e.tot.sum$estimate[2:9]
   tot.rich[9:16, 4:5] <- m.e.tot.ci[2:9, ]
   
 # C3 native   
   c3.rich[1:8, 3] <- m.n.c3.sum$estimate[2:9]
   c3.rich[1:8, 4:5] <- m.n.c3.ci[2:9, ]
-# C3 exotic 
+# C3 non-native 
   c3.rich[9:16, 3] <- m.e.c3.sum$estimate[2:9]
   c3.rich[9:16, 4:5] <- m.e.c3.ci[2:9, ]
   
 # C4 native  
   c4.rich[1:8, 3] <- m.n.c4.sum$estimate[2:9]
   c4.rich[1:8, 4:5] <- m.n.c4.ci[2:9, ]
-# C4 exotic  
+# C4 non-native  
   c4.rich[9:16, 3] <- m.e.c4.sum$estimate[2:9]
   c4.rich[9:16, 4:5] <- m.e.c4.ci[2:9, ]
  
@@ -157,7 +157,7 @@
   aus <- raster("C:/Users/s436862/Dropbox/Poaceae/Data files/Australia/aus 100 km v2.grd")
   
 # environmental data
-  # retained from varaible selection process
+# retained from varaible selection process
   vs.evs <- c("cell.category.v2", "prop.cover", "pcoldq", "pwarmq", "amt", "ts", "arid", "pewc", "th", "hii")
   
 # select from wider EV list
@@ -179,7 +179,7 @@
 # C4 richness  
   nat.c4.pred <- predict(m.n.c4, newdata = pred.ev)
   
-# exotic ----------------------------------------------------------------------
+# non-native ----------------------------------------------------------------------
 # total richness
   exo.tot.pred <- predict(m.e.tot, newdata = pred.ev)
   
@@ -232,7 +232,7 @@
   writeRaster(n.c4.p, "n.c4.predicted", overwrite = T)
   plot(n.c4.p)
   
-# exotic  
+# non-native  
   e.tot.p <- setValues(aus, x[, 4])
   writeRaster(e.tot.p, "e.tot.predicted", overwrite = T)
   plot(e.tot.p)
