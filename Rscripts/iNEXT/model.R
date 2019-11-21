@@ -1,12 +1,6 @@
 ####################################################################
-# iNEXT model
+# proportional richness model
 ####################################################################
-# date created: 2/5/19
-# last updated:  
-
-# aims ---------------------------------------------------------------------
-# 1. model using previous version of the rarefaction technique (independent methodology rather than the proportion; but with the iNEXT estimator v2 results)
-# 2. predict distributions using these models
 
 # library ------------------------------------------------------------------
   library(dplyr)
@@ -16,10 +10,8 @@
 
   rm(list = ls())
  
-# 1. modelling observed data -------------------------------------------   
 # data ----------------------------------------------------------------   
-# rarefied data (generated from 'Plot' script)
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/iNEXT/Rasters/observed 15 rec 0.8 cov warn removed")
+  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/iNEXT/Rasters/proportional species richness")
   
   current.list <- list.files(pattern = ".grd")
   names <- gsub(pattern = "\\.grd$", "", current.list)
@@ -47,37 +39,37 @@
   
 # models --------------------------------------------------------------
 # native total 
-  m.n.tot <- lm(n.tot ~ pcoldq + pwarmq * amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
+  m.n.tot <- lm(n.tot ~ pcoldq + pwarmq + amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
   summary(m.n.tot) 
   m.n.tot.sum <- tidy(m.n.tot)
   m.n.tot.ci <- confint(m.n.tot)
   
 # native C3  
-  m.n.c3 <- lm(n.c3 ~ pcoldq + pwarmq * amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
+  m.n.c3 <- lm(n.c3 ~ pcoldq + pwarmq + amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
   summary(m.n.c3) 
   m.n.c3.sum <- tidy(m.n.c3)
   m.n.c3.ci <- confint(m.n.c3)
 
 # native C4
-  m.n.c4 <- lm(n.c4 ~ pcoldq + pwarmq * amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
+  m.n.c4 <- lm(n.c4 ~ pcoldq + pwarmq + amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
   summary(m.n.c4) 
   m.n.c4.sum <- tidy(m.n.c4)
   m.n.c4.ci <- confint(m.n.c4)
    
 # non-native total 
-  m.e.tot <- lm(e.tot ~ pcoldq + pwarmq * amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
+  m.e.tot <- lm(e.tot ~ pcoldq + pwarmq + amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
   summary(m.e.tot) 
   m.e.tot.sum <- tidy(m.e.tot)
   m.e.tot.ci <- confint(m.e.tot)
   
 # non-native C3  
-  m.e.c3 <- lm(e.c3 ~ pcoldq + pwarmq * amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
+  m.e.c3 <- lm(e.c3 ~ pcoldq + pwarmq + amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
   summary(m.e.c3) 
   m.e.c3.sum <- tidy(m.e.c3)
   m.e.c3.ci <- confint(m.e.c3)
 
 # non-native C4
-  m.e.c4 <- lm(e.c4 ~ pcoldq + pwarmq * amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
+  m.e.c4 <- lm(e.c4 ~ pcoldq + pwarmq + amt + ts + arid + pewc + th + hii + prop.cover, data = spp.ev)
   summary(m.e.c4) 
   m.e.c4.sum <- tidy(m.e.c4)
   m.e.c4.ci <- confint(m.e.c4)
@@ -145,7 +137,7 @@
 # ----------------------------------------------------------------------------
 
   
-# 2. modelling predicted data -------------------------------------------
+# modelling predicted data -------------------------------------------
 # data ----------------------------------------------------------------   
 # model data (from above)
   rm(list = ls())
