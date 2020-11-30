@@ -1,0 +1,41 @@
+Metadata
+POA Species richness x annual precipitation (AP)
+
+Name codes
+Poa species: 1383 species from Australian Virtual Herbarium (AVH) -- sourced from Richard.
+AP (annual precipitation): bio_12 (@ 30s/1km^2 resolution) from WorldClim. Modified to extent of Australian continent.
+
+
+
+4-7/8/17
+
+Mostly a trial and error way to undertsand this process.
+
+The aim of this process is to correlate POA species (all/native/introduced) with annual precipitation (AP; bio_12 from worldclim).
+There are a variety of methods used. 
+
+Firstly, I have developed an Australia-dimensions RASTER of the AP climate data. (And I am developing a stack of all of the environmental variables i intend to plot.)
+This is a gridded, coordinated (lat/long) square, with Australian-shaped MAP data within those grids (at a ~1km^2 scale).
+
+For this data, I have adjusted the resolution (AGGREGATE fuction) of the cells to adjust the data to a plottable scale. (Something like, 1km^2 -> 1,000km^2.)
+
+To marry the POA data to the MAP data, I have used a RASTERISZE function. This adds the coordinates of individual species occurrences into the MAP RASTER.
+(Within this, there is a code which turns the POA data from [species x occurrences] to unique species per grid, thus obtaining species richness per MAP RASTER cell.)
+
+To account for differences in sampling effort from obtaining the species data, I did a CHOA ESTIMATE. I am not 100% on the 'how' this is achieved (both in terms of the equation in real -life, but also the R codes), however the 'why' is related to unequal sampling effort, which is very relevant. The estimate is included within the codes, sourced from "Richards poa script.R".
+
+I have ended up with RICHNESS and AP data in a roughly-gridded Australia. And these two look correlated in the logged histogram. Whoop! 
+Note: there are some odd values contained within this. E.g. off-coast species occurrences. (Which would thus have a MAP value of 0.) Problems for other days.
+
+The second part of the code is repeating this, sperately, for NATIVE and INTRODUCED POA groups.
+
+What I want to do next: 
+
+- produce dataframe of: grid # | AP | species richness | native richness | introduced richness
+
+- figure out outlier '~0' values
+
+- I am having a little trouble saving the plot of richness x AP.
+  + Have got the plots, too, for native and invasive species 
+
+

@@ -1,0 +1,24 @@
+Single-scale SR-EFs METADATA 
+
+21/1/18
+
+# model All grass groups (A,I,N,P <- maybe Poa..) vs. EFs
+# Note: load 'contains NA' SRE DF files (include empty cells)
+
+# Note: have thus far only done 100 km Natives
+
+# completion so far is Nat @ 100 km
+# basing  off template 'Multiscale SRE DFs'
+
+# have included topographic hetergeneity (th); this is already at the 100 km scale. Damn.. we have 50 and 200. Ok, will rethink that. No worries. Actually, yeah that's fine. Will do calc on elevation in there. Coool.
+
+# REMEMBER: contains_NAs file is required for modelling (need cells where spp are missing)
+# Note: all teh correlation tests are NA for that one, but it doesn't matter
+
+# Structure like this: 
+# 50 km: AVH, Int, Nat, Poa EF-SRE dfs
+# Then Model each in its own section
+# 100 km: repeat
+# ...
+
+# Structure of model names: base on what happens to Native (as template)

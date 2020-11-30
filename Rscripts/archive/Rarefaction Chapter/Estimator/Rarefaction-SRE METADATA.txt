@@ -1,0 +1,51 @@
+
+# Date created: 8/6
+# Last modified: 17/7
+
+# Rarefaction Chapter and SRE methods 
+
+# Rarefaction is the paper which is the chosen method to compare species richness of nat and exotic grass, and to model that and discuss the outcomes of the various SRE methods, compared and evaluated in SRE methods
+
+# Below are some descriptions of the various scripts I have in the rarefaction folder; it might well be useful to put them in a corner, and steal from them relevant peices, as they are kinda getting out of hand
+
+# Rarefaction estimator v.1.R = original by Richard; v.2.K = modified original by Kyle, and this document will explain what v.3.0 (and any subsequent ones) are all about.
+
+
+# 1.0 Rarefaction Chapter 5.0 ------------------------------------------------------------------
+Is firstly about tying rarefaction to native and introduced grass richness -- including splittingg via C3/C4
+
+Therfore, this script will be about automotaing the different feautures of the rarefaction method to get this going.
+
+This involves having a few different Rarefaction mini-projects
+
+# 1.1 Rarefaction test -----------------------------------------------------------------
+Since I am now doing rarefaction on the introduced and native records separately, the resolution from the introduced species is going to be waaaaaaaaaaaaay worse. So what I'll do is a few rolls of the minimum cell-record-cutoff (mr) dice and assess the coverage versus resolution from, say, 20 to fifty in 5 spp increments.
+
+Think I have the script that deal with these somewhere, so won't be too hard to wrangle to this
+-> Yup - am to steal the Solo-function from Rarefaction v4.0, and add in different cutoff points manually, and (attempt to) make the script more streamline
+
+# 1.2 Nat OR int OR whomever -----------------------------------------------------------
+Solo; for use in the SRE dataframe script, where I want to compare one group of records/taxa to other measures of (extrapolation) SREs and compare rarefaction just as another one
+
+# 1.3 Nat/Int c3-c4 --------------------------------------------------------------------
+Mixed pp; for use in Rarefaction where I want to be able to split my data into C3 and C4 records; this will be  modification of Richard's method, of splitting the total_poa (nat-Int) df into its constituent groups. Pretty happy he's done that, makes this a lot easier dealing with that code.
+
+# Notes:
+
+
+
+# 2.0 EF variable selection ------------------------------------------------------------
+# Not strictly the Rarefaction stuff, but this process is included for generating the species-EF models which I'm using rarefaction for, and will proably include in the SRE Methods script
+
+
+# 3.0 Rarefaction EF modelling -------------------------------------------------------
+# Aim of this section: 
+# Reduced-EF varaibles modelled against rarefied native-C3/4 and introduced C3/4 species richness
+  
+
+
+
+
+
+
+

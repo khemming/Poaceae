@@ -1,0 +1,50 @@
+# Date created: 14/3/18
+
+######################################################################################
+################# Rarefaction & SRE (& EF) dataframe METADATA ########################
+######################################################################################
+
+# based on "Rarefaction estimator grass_messed with" (and ""Rarefaction estimator grass)
+# and Single-scale SRE-DF, and kind of raster-df 
+
+# next script: Rarefaction SR-EF-model &  rarefaction raster plots
+
+################################### Aim of script ################################
+Want to test a range of extrapolation estimators & rarefaction using herbarium data to make species-environment relationships
+
+Notes:
+I keep changing this as I go along, but as long as I keep updating it, things are all good
+
+I have decided to compare at 100 km: (1) rarefaction at 25, (2) 50, & (3) 100 cutoffs; (4) Chao1 (5) baseline (6) ACE, (7) bootstrap and (8) ACE
+And doing this for (a) Poa (b) native (c) introduced distributions for a selection of the above
+(Not sure about doing all three for all atm... might be best to stick with natives; but also have the script so I can do whichever I want)
+
+################################ 1km + 2-500 dataframe ################################
+This section is to quantify how biased the records are over geographic scales
+I think 500 km is too big, maybe base this on Haque's size study (1 - 350 km)
+I have some things in mind for the plot; but that's a different script
+
+
+################################ SRE dataframe #######################################
+This needs to be transferable to have any data shoved at it
+The SREs I am going to use are as follows:
+Bootstrap
+Second-order Jackknife
+Chao1 (+ bias-corrected version)
+ACE
+Rarefaction (I am doing it over 3x spatial scales, and 3x cutoffs, to see which is best)
+
+Therefore, removing Lanumteang and iChao (as the first is crazy and the second is basically Chao1)
+
+Starts off with rarefaction -- does nat and int together, which will give me slightly different results than if I were to do it separately
+But we can change that later, given the focus of the intended paper
+
+############################### EFs #######################################
+This will be an interesting section. I want, with the dataframes of 2538 cells, to have all the EF information as well
+
+Join them later in the Correlation and EDA and modelling script :) :) 
+
+######################### Rare-SRE-EF EDA + Models ###############################
+Just going to do it here
+Basing it off the other EDA-model one
+Chur

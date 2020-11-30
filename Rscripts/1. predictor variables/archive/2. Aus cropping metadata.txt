@@ -1,0 +1,16 @@
+EF cropped metadata
+
+The aim of this script is to have the eact same raster formats for all EFs. Exact formating of resolution, CRS (projection), extent are all necessary to then move onto extracting values which cover the same location, for correlation analyses and modelling later.
+
+First, EF projection rasters were loaded in.
+
+Second, my model Australia raster was loaded. This was my pre-formatted raster template with the exact specifications I wanted for my EFs in the cropped states. A shapefile was required to mask values which fell outside of this range.
+
+Third, this code was used as the backbone of this analysis: projectRaster(from, to, res, crs, method = "ngb")
+The method "ngb" denotes the uesage of "Nearest-neighbor interpolation", which wikipedia tells me is a simple method of multivariate interpolation. 
+However, there is also a method called "Bilinear interpolation", which does a similar thing and is the default. R says nbg is good for discrete data, while bilinear is good for continuous.
+As I speak to you now, I am running PS (precipitation seasonality) with both measures to determine how (and if) they change the final 'cropped' cell values by eye. And, if so, which one resembles most cloesly the orginal file.
+They're exactly the same by eye. I checked the 'min' and m'max' values, and they're identical. Cool.
+
+Note for global land use: there were some extra steps involved in producing this raster. Namely, converting the 11 - 230 value ranges for the specific land uses to something more manageable (1-8). Aggregations were taken from the legend spreadsheet in the Glob data files, and referenced from the IPCC land-use source (i.e. 'newValues' column).
+

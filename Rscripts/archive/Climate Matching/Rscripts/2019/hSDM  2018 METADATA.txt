@@ -1,0 +1,35 @@
+
+hSDM R package METADATA
+includes vignette and Ricahrd's JAGS code so far
+
+GBIF data -----------------------------------------------------------------------------
+Original data (GBIF Poaceae 11.1.19 master) name: 0024868-181108115102211.csv
+
+
+
+hSDM vignette -------------------------------------------------------------------------
+Chapter 2: Occurence data
+2.1 Binomial models
+
+yi = total number of presences of a species after several visits (vi) to a particular site (i)
+   = species' 'n'
+   = binomial distribution (either it's there or not when you go and sample)
+   
+??i = probability of precence of the species at site i
+
+Gives us the equivalent equations:   yi ~ Binomial(vi, ??i)      
+                                       logit(??i) = Xi??
+
+Using this statistical model, we aim at representing a "suitability process". 
+Given environmental variables Xi, how much is habitat at site i suitable for the species under consideration? Parameters ?? indicate how much each environmental variable contributes to the suitability process.
+
+2.1.2 Data generation
+A linear model including altitude (variable denoted A) is used to compute the proba- bility of presence of the species, with the euation: 
+  yi ~ Bernoulli(??i) 
+  logit(??i) = ??0 +??1Ai
+  
+We fix the parameters to ??0 = ???1 and ??1 = 1. The species has a higher probability of presence at higher altitudes (Fig. 2.2).
+# ---------------------------------------------------------------------------------------
+
+Richard's JAGS R-script: inclued as part 2 ---------------------------------------------------
+
