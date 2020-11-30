@@ -32,13 +32,13 @@
       labs(x = xlab, y = ylab) +
       theme(panel.border = element_blank(),
             plot.title = element_text(size = 20),
-            axis.title.x = element_text(size = 16),
-            axis.title.y = element_text(size = 16),
+            axis.title.x = element_text(size = 20),
+            axis.title.y = element_text(size = 20),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank(), 
             axis.line = element_line(colour = "black", size = 1),
-            axis.text.x = element_text(colour = "black", size = 16),
-            axis.text.y = element_text(colour = "black", size = 16),
+            axis.text.x = element_text(colour = "black", size = 18),
+            axis.text.y = element_text(colour = "black", size = 18),
             axis.ticks.length = unit(0.25, "cm"),
             axis.ticks = element_line(colour = "black", size = 1)) +
       scale_x_continuous(breaks = c(0, 0.5, 1), 

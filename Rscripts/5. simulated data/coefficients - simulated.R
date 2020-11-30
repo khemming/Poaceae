@@ -50,16 +50,16 @@
     geom_rect(xmin = -50, xmax = 31,
               ymin = 0.7, ymax = 1.3, 
               size = 0.5, fill = "grey1", alpha = 0.05) +
-    labs(x = "Mean estimate",
+    labs(x = "",
          y = "",
          title = "") +
     scale_x_continuous(limits = c(-25, 25),
                        breaks = c(-18, 0, 18),
-                       labels = c("Negative", "0", "Positive")) +
+                       labels = c("Negative", 0, "Positive")) +
     theme(axis.title = element_blank(),
           plot.title = element_text(size = 20),
-          axis.line = element_line(colour = "black", size = 1.5),
-          axis.text.x = element_text(colour = "black", size = 18, vjust = 68),
+          axis.line = element_line(colour = "black", size = 1),
+          axis.text.x = element_text(colour = "black", size = 18), # , vjust = 68
           axis.title.x = element_blank(),
           axis.text.y = element_text(colour = "black", size = 18),
           axis.ticks.length = unit(0.25, "cm"),
@@ -114,7 +114,7 @@
           legend.position = "right", 
           axis.title = element_blank(),
           plot.title = element_text(size = 22, face = "bold"),
-          axis.line = element_line(colour = "black", size = 1.5),
+          axis.line = element_line(colour = "black", size = 1),
           axis.text.x = element_blank(),
           axis.text.y = element_text(colour = "black", size = 18))
   
@@ -163,7 +163,7 @@
           legend.position = "right", 
           axis.title = element_blank(),
           plot.title = element_text(size = 22, face = "bold"),
-          axis.line = element_line(colour = "black", size = 1.5),
+          axis.line = element_line(colour = "black", size = 1),
           axis.text.x = element_blank(),
           axis.text.y = element_text(colour = "black", size = 18))
   

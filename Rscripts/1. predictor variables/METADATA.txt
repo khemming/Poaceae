@@ -1,12 +1,13 @@
-predictor variable projection metadata
+# predictor variable projection metadata
 
-The aim of the associated script is to have workable rasters of all predictor variables. Workable consists of changing the CRS to WGS_84 and cropping the global distributions of the rasters to something managable, basically around Australia. 
+The aim of the associated script is to have workable rasters of all predictor variables. Workable consists of changing the CRS and cropping the global distributions of the rasters to around Australia. 
+
+(0) Australian outline: shapefile used to demarcate Australia, downloaded folder: Australia (AUS) ASGS Ed 2016 Digital Boundaries in ESRI Shapefile Format via: https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument
 
 The predictor variables are as follows:
 
-(1-19) Bioclim variables
+(1-19) Bioclim variables (v2.0)
 Reference: Fick, S.E. and R.J. Hijmans, 2017. Worldclim 2: New 1-km spatial resolution climate surfaces for global land areas. International Journal of Climatology,
-Note: I think it is this reference (it's V2.0's one; these might be V1.4... pretty sure they're the new ones though. Not 100%, as yeah..)
 
 (1) BIO1 = Annual Mean Temperature (MAT)
 (2) BIO2 = Mean Diurnal Range (Mean of monthly (max temp - min temp)) (MDR)
@@ -27,59 +28,36 @@ Note: I think it is this reference (it's V2.0's one; these might be V1.4... pret
 (17) BIO17 = Precipitation of Driest Quarter (PDRYQ)
 (18) BIO18 = Precipitation of Warmest Quarter (PWARMQ)
 (19) BIO19 = Precipitation of Coldest Quarter (PCOLDQ)
-# Reference: in paper
 
-(20) Australia population
-What is it: Raw population statistics from Australian Government, 2011. 
-Reference: http://www.abs.gov.au/AUSSTATS/abs@.nsf/Lookup/1270.0.55.007Explanatory%20Notes12011?OpenDocument
-Notes: Not very useful considering what other humna influence indexes I have (e.g. NASA's Human Influence Index). But it is here if need be. 
-Did not use
-
-
-(21) Aridity (ARID)
+(20) Aridity (ARID)
 What is it: Global Aridity Index
 Reference: Trabucco, A., and Zomer, R.J. 2009. Global Aridity Index (Global-Aridity) and Global Potential Evapo-Transpiration (Global-PET) Geospatial Database. CGIAR Consortium for Spatial Information. Published online, available from the CGIAR-CSI GeoPortal at: http://www.csi.cgiar.org.
 Notes: see also Methods file (in CGIR CSI Aridity and Evaporation) for methods, equations and more references
 
-(22) potential evapo-transpiration (EVAP)
+(21) potential evapo-transpiration (EVAP)
 What is it: potential evapotranspiration of a system
 Reference:Trabucco, A., and Zomer, R.J. 2009. Global Aridity Index (Global-Aridity) and Global Potential Evapo-Transpiration (Global-PET) Geospatial Database. CGIAR Consortium for Spatial Information. Published online, available from the CGIAR-CSI GeoPortal at: http://www.csi.cgiar.org.
 Notes: see also Methods file (in CGIR CSI Aridity and Evaporation) for methods, equations and more references
 Notes:
 
-(23) swhc
-What is it: actually not sure; will come back to this, but hopefully not. Hopefully I have a better one as EF #16 
-Reference:
-Notes: did not use
-
-(24) elevation (ELEV)
+(22) elevation (ELEV)
 What is it: mean (or median, actually) elevation at 1km^2 for globe
 Reference: Fischer, G., F. Nachtergaele, S. Prieler, H.T. van Velthuizen, L. Verelst, D. Wiberg, 2008. Global Agro-ecological Zones Assessment for Agriculture (GAEZ 2008). IIASA, Laxenburg, Austria and FAO, Rome, Italy
 Notes: same source as swhc (above), but actually useful. http://www.fao.org/soils-portal/soil-survey/soil-maps-and-databases/harmonized-world-soil-database-v12/en/ has useful information/links
 Notes: did not use; instead, used TH
 
-(25) topographic heterogeneity (TH)
+(23) topographic heterogeneity (TH)
 Based off elevation, this is the measure of how bumpy a landscape is, defined as the SD of the mean for the scale. Actualy very easy to calculate; use aggregate( fun = sd), it was really quite surprising.
 Reference: not sure; you'll have to google it. (Richard gave me this method, and didn't say who did it)
 
 
-(26) Aus land use  
-What is it: land use of Australia. Again, hope to get a better one (perhaps #17). So keep an eye out down there.
-Reference: not sure; see NLUM_UserGuide_2010-11_v1.0.0.pdf for details
-Notes: did not use
-
-(27) Human Influence Index
+(24) Human Influence Index
 What is it: DESCRIPTION
 This archive contains the CIESIN/ Wildlife Conservation Society, WCS Last of the Wild dataset. Documentation for data is available at these web sites: http://sedac.ciesin.columbia.edu/wildareas/ 
 Reference: Wildlife Conservation Society - WCS, and Center for International Earth Science Information Network - CIESIN - Columbia University. 2005. Last of the Wild Project, Version 2, 2005 (LWP-2): Global Human Influence Index (HII) Dataset (Geographic). Palisades, NY: NASA Socioeconomic Data and Applications Center (SEDAC). http://dx.doi.org/10.7927/H4BP00QC. Accessed DAY MONTH YEAR.
 Notes: scales  1 - 60 for how much man has messed things up
 
-(28) Globcover land use
-What is it: Comprehensive explanatory notes of the GlobCover project and products (methods, legend and validation) are summarized in a document named "GLOBCOVER 2009 - Products description and validation report", which I have in the Land use/Globcover folder
-Reference: Bontemps, S., Defourny, P., Van Bogaert, E., Arino, O., Kalogirou, V. & Perez, E.V. (2011) Globcover 2009 products description and validation report. European Space Agency & Universit? catholique de Louvain. Available at: http://due.esrin.esa.int/globcover/LandCover2009/GLOBCOVER2009_Validation_Report_2.2.pdf.
-Notes: did not use
-
-(29 a, b, c) Derived water-holding capacities (Webb et al. 2000)
+(25-27) Derived water-holding capacities (Webb et al. 2000)
 What are they: 
 a = potential storage of water derived from soil texture (mm)) (st)
 b = potential storage of water in the root zone (mm) (rz)
@@ -87,19 +65,18 @@ c = potential storage of water in the soil profile (mm) (sp)
 Reference: Webb, R. W., C. E. Rosenzweig, and E. R. Levine. 2000. Global Soil Texture and Derived Water-Holding Capacities (Webb et al.). Data set. Available on-line [http://www.daac.ornl.gov] from Oak Ridge National Laboratory Distributed Active Archive Center, Oak Ridge, Tennessee, U.S.A. doi:10.3334/ORNLDAAC/548.
 Notes: 
 
-...
-
-(30) Plant available water capacity
+(28) Plant available water capacity
 What is it: plant available water capacity of soils -- not gonna lie, kinda sounds like it might be like soil water holding capacity, but we'll see what they correlate as 
 Scale of 250 m -- so have to square for 1 km2. Or not? Idk...
 Reference: "The SoilAttribute_src datasets provide information on the source of the data and hence indicates quality of the individual soil attribute datasets. The values of the source datasets are as follow" 
 Reference: McKenzie, N.J., Jacquier, D.W., Maschmedt, D.J., Griffin, E.A., Brough, D.M. (2005). The Australian Soil Resource Information System: technical specifications. National Committee on Soil and Terrain Information/Australian Collaborative Land Evaluation Program, Canberra.
 
-(31) Plant-extractable water capacity
+(29) Plant-extractable water capacity
 What is it: "the amount of water that can  be extracted from the soil to fulfill evapotranspiration demands. It is 
 often assumed to be spatially invariant in large-scale computations of 
 the soil-water balance. Empirical evidence, however, suggests that this 
 assumption is incorrect. This data set provides an estimate of the 
 global distribution of plant-extractable water capacity of soil."
 Reference: Dunne, K. A., and C. J. Willmott. 1996. Global Distribution of Plant-Extractable Water Capacity of Soil (Dunne). Data set. Available on-line [http://www.daac.ornl.gov] from Oak Ridge National Laboratory Distributed Active Archive Center, Oak Ridge, Tennessee, U.S.A. doi:10.3334/ORNLDAAC/545
+
 
