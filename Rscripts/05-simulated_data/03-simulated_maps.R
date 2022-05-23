@@ -94,17 +94,24 @@
          "nonnative no correlation")
   
   
-# start here
-# blank invasion potential -----------------------------------------------------
+# grey map -----------------------------------------------------
+## unknown invasion potential  
+  u.ip <- nonnative.incomplete
+  u.ip[] <- NA
+  u.ip[200:202] <- c(1, 2, 3)
+
 # raster to spatial points dataframe 
-  raster <- calc(nonnative.incomplete, fun = function(x) {x[x>1500] <- NA; return(x)})
+  raster <- u.ip
   raster_spdf <- as(raster, "SpatialPixelsDataFrame")
   raster_df <- as.data.frame(raster_spdf)
   colnames(raster_df) <- c("value", "x", "y")
   
 # colours
-  colr <- rev(brewer.pal(11, "Spectral"))
+  colr <- list("grey60", "grey60", "grey60")
 
+# title
+  title <- "unknown invasion potential"
+  
 # scale bar
   limit_set <- c(cellStats(native.complete, stat = 'min', na.rm = T), 
                  cellStats(native.complete, stat = 'max', na.rm = T))
@@ -118,9 +125,9 @@
     ggtitle(title) +
     geom_polygon(data = oz, aes(x = long, y = lat, group = group), 
                  fill = "grey60") +                                               
-    geom_tile(data = raster_df, aes(x = x, y = y, fill = NA)) +             
+    geom_tile(data = raster_df, aes(x = x, y = y, fill = value)) +             
     geom_polygon(data = oz, colour = "grey1", 
-                 aes(x = long, y = lat, group = group), fill = NA, size = 0.5) + 
+                 aes(x = long, y = lat, group = group), fill = "grey60", size = 0.5) + 
     scale_fill_gradientn(colours = colr, 
                          limits = c(0, 1),                             
                          breaks = c(0, 0.5, 1),

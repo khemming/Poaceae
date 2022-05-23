@@ -60,8 +60,8 @@
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank(), 
             axis.line = element_line(colour = "black", size = 1),
-            axis.text.x = element_text(colour = "black", size = 16),
-            axis.text.y = element_text(colour = "black", size = 16),
+            axis.text.x = element_text(colour = "black", size = 18),
+            axis.text.y = element_text(colour = "black", size = 18),
             axis.ticks.length = unit(0.25, "cm"),
             axis.ticks = element_line(colour = "black", size = 1)) +
       scale_x_continuous(breaks = c(0, 0.5, 1), 
@@ -70,7 +70,7 @@
       scale_y_continuous(breaks = c(0, 0.5,  1), 
         limits = c(0, 1), 
         expand = c(0, 0.05)) +
-      annotate("text", x = 0.13, y = 1, label = label, size = 8) 
+      annotate("text", x = 0.13, y = 1, label = label, size = 10) 
       ggsave(save, plot = last_plot(), dpi = 500, width = 13, height = 12, units = "cm", device = "jpeg")  
     q
     return(q)
@@ -86,7 +86,7 @@
 # labels
   title <- "C3 native-nonnative correlation"
   xlab <- "Observed native richness (scaled)"
-  ylab <- "Nonnative richness (scaled)" 
+  ylab <- "Exotic richness (scaled)" 
 # correlation
   cor <- sprintf("%.2f", cor(x, y, use = "complete.obs", method = "spearman"), 2)
   label <- paste0("r = ", cor)
@@ -105,7 +105,7 @@
 # labels
   title <- "C4 native-nonnative correlation"
   xlab <- "Observed native richness (scaled)"
-  ylab <- "Nonnative richness (scaled)" 
+  ylab <- "Exotic richness (scaled)" 
 # correlation
   cor <- sprintf("%.2f", cor(x, y, use = "complete.obs", method = "spearman"), 2)
   label <- paste0("r = ", cor)
@@ -126,7 +126,7 @@
 # labels
   title <- "Native-nonnative total correlation"
   xlab <- "Native richness (scaled)"
-  ylab <- "Nonnative richness (scaled)" 
+  ylab <- "Exotic richness (scaled)" 
 # correlation
   cor <- sprintf("%.2f", cor(x, y, use = "complete.obs", method = "spearman"), 2)
   label <- paste0("r = ", cor)
@@ -244,7 +244,7 @@
   y <- getValues(nonnative_C3)
   dat <- data.frame(cbind(x, y))
 # labels
-  title <- "Nonnative C3 observed x predicted correlation"
+  title <- "Exotic C3 observed x predicted correlation"
   xlab <- "Predicted C3 richness (scaled)"
   ylab <- "Observed C3 richness (scaled)" 
 # correlation
@@ -263,7 +263,7 @@
   y <- getValues(nonnative_C4)
   dat <- data.frame(cbind(x, y))
 # labels
-  title <- "Nonnative C4 observed x predicted correlation"
+  title <- "Exotic C4 observed x predicted correlation"
   xlab <- "Predicted C4 richness (scaled)"
   ylab <- "Observed C4 richness (scaled)" 
 # correlation

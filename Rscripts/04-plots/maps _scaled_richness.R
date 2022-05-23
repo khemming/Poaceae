@@ -22,38 +22,40 @@
   plot(oz)
   
 # iNEXT richness for scale bar
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/rasters/iNEXT")
-  current.list <- list.files(pattern = ".grd")
-  inext_names <- gsub(pattern = "\\.grd$", "", current.list)
+  current.list <- list.files(path = "Results/rasters/iNEXT",
+                             pattern = ".grd", full.names = T)
+  current.list
+  inext_names <- gsub(pattern = ".grd$", "", current.list)
+  st <- gsub(pattern = "Results/rasters/iNEXT/|.grd$", "", current.list)
+  st
   inext <- stack(current.list)
   names(inext) <- inext_names
   list2env(setNames(unstack(inext), names(inext)), .GlobalEnv)
   st_scale <- stack(native_C3, native_C4, native_total, 
                     nonnative_C3, nonnative_C4, nonnative_total)
-  
 # observed 
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/rasters/scaled")
-  current.list <- list.files(pattern = ".grd")
-  names_long <- gsub(pattern = "\\.grd$", "", current.list)
+  current.list <- list.files(path = "Results/rasters/scaled",
+                             pattern = ".grd", full.names = T)
+  names_long <- gsub(pattern = "Results/rasters/scaled/|.grd$", "", current.list)
   ob.stack <- stack(current.list)
   names(ob.stack) <- names_long
   
 # predicted  
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/rasters/predicted")
-  current.list <- list.files(pattern = ".grd")
-  names_long <- gsub(pattern = "\\.grd$", "", current.list)
+  current.list <- list.files(path = "Results/rasters/predicted",
+                             pattern = ".grd", full.names = T)
+  names_long <- gsub(pattern = "Results/rasters/predicted/|.grd$", "", current.list)
+  names_long
   pr.stack <- stack(current.list)
   names(pr.stack) <- names_long
  
 # potential  
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/rasters/potential")
-  current.list <- list.files(pattern = ".grd")
-  names_long <- gsub(pattern = "\\.grd$", "", current.list)
+  current.list <- list.files(path = "Results/rasters/potential",
+                             pattern = ".grd", full.names = T)
+  names_long <- gsub(pattern = "Results/rasters/potential/|.grd$", "", current.list)
+  names_long
   po.stack <- stack(current.list)
   names(po.stack) <- names_long
  
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
-  
 # scale bar --------------------------------------------------------------
 # iNEXT species richness to scale map legends
   st_scale[[1]]

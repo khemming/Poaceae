@@ -31,7 +31,7 @@
                   "Aridity",
                   "Annual mean\ntemperature")
     
-  status <- rep(c("Native", "Nonnative"), each = 10)
+  status <- rep(c("Native", "Exotic"), each = 10)
 
 # function
   model_df <- function(nat_model, nnat_model){
@@ -41,7 +41,7 @@
            slice(2:9)
     nnat <- nnat_model %>% 
             mutate(pv = rownames(nat_model),
-            status = "Nonnative") %>%
+            status = "Exotic") %>%
             slice(2:9)
     long_df <- bind_rows(nat, nnat) %>%
                mutate(estimate = est.,
@@ -52,32 +52,34 @@
   }
   
 # run   
-  c3 <- model_df(ci_list[["native_C3"]], ci_list[["nonnative_C3"]])
-  c4 <- model_df(ci_list[["native_C4"]], ci_list[["nonnative_C4"]])
-  tot <- model_df(ci_list[["native_total"]], ci_list[["nonnative_total"]])
+  c3 <- model_df(ci_ls[["native_C3"]], ci_ls[["nonnative_C3"]])
+  c4 <- model_df(ci_ls[["native_C4"]], ci_ls[["nonnative_C4"]])
+  tot <- model_df(ci_ls[["native_total"]], ci_ls[["nonnative_total"]])
 
 # plot function ----------------------------------------------------------------------
   coef_v1 <- function(title, dat, x_limits, x_labels){ 
-  q <-  ggplot(dat, aes(y = plot_names, shape = status, colour = status)) +
+  q <-  ggplot(dat, aes(y = plot_names, colour = status)) +
          geom_vline(aes(xintercept = 0),
                        colour = "black", 
                        size = 0.9, 
                        linetype = "dashed") +
-        geom_point(aes(x = estimate), size = 4, position = position_dodge(width = 0.55)) +
+        geom_point(aes(x = estimate, shape = status), size = 4, position = position_dodge(width = 0.55)) +
         geom_errorbarh(aes(xmin = lower, xmax = upper),
                        size = 1, height = 0, position = position_dodge(width = 0.55)) +
         scale_x_continuous(limits = x_limits,
                            breaks = x_labels,
                            labels = x_labels) +
         theme_classic() +
-        scale_colour_manual(labels = c("Native", "Nonnative"),
-                            values = c("blue", "red")) + 
-       
+        scale_colour_manual(labels = c("Exotic", "Native"),
+                            values = c("red", "blue")) + 
+        scale_shape_manual(labels = c("Exotic", "Native"),
+                           values = c(19, 19)) +
+        
         labs(colour = "Status",
              shape = "Status",
              x = "Mean estimate",
              y = "") +
-        theme(legend.title = element_text(size = 18),
+        theme(legend.title = element_text(size = 16),
               legend.text = element_text(size = 16),
               legend.position = "bottom", 
               axis.title = element_text(size = 16),

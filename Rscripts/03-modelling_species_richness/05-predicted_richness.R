@@ -27,7 +27,7 @@
                      nrow = nrow(cell_id))
   
   for (i in 1:ncol(pred_mat)){
-      pred_mat[,i] <- predict(model_list[[i]], newdata = pv)
+      pred_mat[,i] <- predict(model_ls[[i]], newdata = pv)
   }
 
 # check

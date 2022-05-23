@@ -31,8 +31,7 @@ Reference: Fick, S.E. and R.J. Hijmans, 2017. Worldclim 2: New 1-km spatial reso
 
 (20) Aridity (ARID)
 What is it: Global Aridity Index
-Reference: Trabucco, A., and Zomer, R.J. 2009. Global Aridity Index (Global-Aridity) and Global Potential Evapo-Transpiration (Global-PET) Geospatial Database. CGIAR Consortium for Spatial Information. Published online, available from the CGIAR-CSI GeoPortal at: http://www.csi.cgiar.org.
-Notes: see also Methods file (in CGIR CSI Aridity and Evaporation) for methods, equations and more references
+Reference: Zomer RJ, Trabucco A, Bossio DA, van Straaten O, Verchot LV, 2008. Climate Change Mitigation: A Spatial Analysis of Global Land Suitability for Clean Development Mechanism Afforestation and Reforestation. Agric. Ecosystems and Envir. 126: 67-80
 
 (21) potential evapo-transpiration (EVAP)
 What is it: potential evapotranspiration of a system

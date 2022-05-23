@@ -63,6 +63,7 @@
           "Periballia",
           "Microlaena",
           "Molineriella",
+          "Neurachne",
           "Saxipoa", # no data on PP; genus recently moved from Poa, which is C3, so assuming that's conserved
           "Sylvipoa", # no data on PP; genus recently moved from Poa, which is C3, so assuming that's conserved
           "Sasaella",
@@ -99,7 +100,6 @@
   both <- gen2 %>% filter(pp == "C3 & C4")
   both
   ala_pp2 <- ala_pp %>% filter(genus != "Alloteropsis",
-                               genus != "Neurachne",
                                genus != "Steinchisma") %>%
                         droplevels()
   
@@ -151,7 +151,12 @@
   ala4 <- ala3 %>% mutate(status = ifelse(apc.status == 1, "native", "nonnative")) %>% 
             dplyr::select(-apc.status)
   table(ala4$status, exclude = F)
- 
+  
+# Neurachne munroi is the only C4 Neurachne
+  c4_neur <- "Neurachne munroi"
+  c3_neur_index <- (ala4$species %in% c4_neur)
+  ala4$pp[c3_neur_index]<- "C4"
+
 # crop records (again) ---------------------------------------
   xy <- cbind(ala4$longitude, ala4$latitude)
   cell <- raster::extract(aus, xy)
@@ -168,5 +173,6 @@
   
 # save master copy
   saveRDS(ala5, "Data files/ALA/master data/master grass records.rds")
+  saveRDS(ala5, "C:/Users/s436862/Dropbox/Projects/Sue Bryceson/data/ALA records/raw grass records.rds")
   
 # ------------------------------------------------------------------------------  

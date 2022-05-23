@@ -1,13 +1,4 @@
-#####################################################################
-# environmental variable selection for linear regression
-#####################################################################
-# date created: 17/5
-# last updated:
 
-# aim ------------------------------------------------------------------------
-# dwindle the 28 variables down to 8 or so
-# using correlation criteria
-# and VIF scores we'll assess
 
 # library ---------------------------------------------------------------------
   library(tidyverse)

@@ -154,6 +154,8 @@
   nc_nn_v4 <- mask(nc_nn_v3, nn_cor3)
   plot(nc_nn_v4)
   
+# template map -----------------------------------------------------------------------------  
+  
 # save rasters -----------------------------------------------------------------------------
   writeRaster(nat_comp_s, "Results/simulated results/native complete.grd", overwrite = T)
   writeRaster(nonnat_comp_s, "Results/simulated results/nonnative complete.grd", overwrite = T)

@@ -9,23 +9,20 @@
 
 # data ----------------------------------------------------------------
 # observed richness
-  setwd("Results/rasters/scaled")
-  current.list <- list.files(pattern = ".grd")
-  names <- gsub(pattern = "\\.grd$", "", current.list)
+  current.list <- list.files(path = "Results/rasters/scaled",
+                             pattern = ".grd", full.names = T)
+  names <- gsub(pattern = "Results/rasters/scaled/|.grd$", "", current.list)
   c.stack <- stack(current.list)
   names(c.stack) <- names
   list2env(setNames(unstack(c.stack), names(c.stack)), .GlobalEnv)
   
 # predicted richness
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/rasters/predicted")
-  
-  current.list <- list.files(pattern = ".grd")
-  names <- gsub(pattern = "\\.grd$", "", current.list)
+  current.list <- list.files(path = "Results/rasters/predicted",
+                             pattern = ".grd", full.names = T)
+  names <- gsub(pattern = "Results/rasters/predicted/|.grd$", "", current.list)
   c.stack <- stack(current.list)
   names(c.stack) <- names
   list2env(setNames(unstack(c.stack), names(c.stack)), .GlobalEnv)
-  
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
   
 # invasion potential ---------------------------------------------------    
 # requires: 

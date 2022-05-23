@@ -19,18 +19,18 @@
   head(cells)
 
 # rasters 
-  setwd("Results/rasters/predictor variables")
-  files <- list.files(pattern = ".grd")
-  names <- gsub(pattern = "\\.grd$", "", files)
+  files <- list.files(path = "Results/rasters/predictor variables",
+                      pattern = ".grd", full.names = T)
+  names <- gsub(pattern = "Results/rasters/predictor variables/|.grd", "", files)
+  names
   stack <- stack(files)
   names(stack) <- names
+  list2env(setNames(unstack(stack), names), .GlobalEnv)
   
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
-
 # dataframe ----------------------------------------------------------
   pv_v <- getValues(stack)
   pv_df <- as.data.frame(pv_v)
-
+  names(pv_df)
 # scale and nomralise 
   pvs_norm <- scale(pv_df, center = T, scale = T)
   pvs_norm <- data.frame(pvs_norm)

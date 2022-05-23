@@ -49,8 +49,8 @@
                          limits = c(0, 1), 
                          #expand = c(0, 0.05)
                          ) +
-      annotate("text", x = 0.2, y = 1, label = label, size = 8) 
-    ggsave(save, plot = last_plot(), dpi = 500, width = 11, height = 11, units = "cm", device = "jpeg")  
+      annotate("text", x = 0.15, y = 1, label = label, size = 8) 
+    ggsave(save, plot = last_plot(), dpi = 500, width = 12, height = 11, units = "cm", device = "jpeg")  
     return(q)
   }
 
@@ -64,7 +64,7 @@
 # labels
   title <- "Completed nonnative invasion"
   xlab <- "Native richness (scaled)"
-  ylab <- "Nonnative richness (scaled)" 
+  ylab <- "Exotic richness (scaled)" 
 # correlation
   cor <- sprintf("%.2f", round(cor(x, y, use = "complete.obs", method = "spearman"), 2))
   label <- paste0("r = ", cor)
@@ -79,9 +79,9 @@
   y <- getValues(nonnative.incomplete)
   dat <- data.frame(cbind(x, y))
 # labels
-  title <- "Nonnative invasion potential"
+  title <- "Exotic invasion potential"
   xlab <- "Native richness (scaled)"
-  ylab <- "Nonnative richness (scaled)" 
+  ylab <- "Exotic richness (scaled)" 
 # correlation
   cor <- sprintf("%.2f", round(cor(x, y, use = "complete.obs", method = "spearman"), 2))
   label <- paste0("r = ", cor)
@@ -98,7 +98,7 @@
 # labels
   title <- "No nonnative invasion potential"
   xlab <- "Native richness (scaled)"
-  ylab <- "Nonnative richness (scaled)" 
+  ylab <- "Exotic richness (scaled)" 
 # correlation
   cor <- sprintf("%.2f", round(cor(x, y, use = "complete.obs", method = "spearman"), 2))
   label <- paste0("r = ", cor)

@@ -8,15 +8,14 @@
   rm(list = ls())
 
 # data ----------------------------------------------------------------
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/rasters/iNEXT")
+  setwd()
   
-  current.list <- list.files(pattern = ".grd")
-  names <- gsub(pattern = "\\.grd$", "", current.list)
+  current.list <- list.files(path = "Results/rasters/iNEXT",
+                             pattern = ".grd", full.names = T)
+  names <- gsub(pattern = "Results/rasters/iNEXT/|.grd$", "", current.list)
   c.stack <- stack(current.list)
   names(c.stack) <- names
   list2env(setNames(unstack(c.stack), names(c.stack)), .GlobalEnv)
-  
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
 
 # relative richness -----------------------------------------------    
 # requires: raster -- loaded from above

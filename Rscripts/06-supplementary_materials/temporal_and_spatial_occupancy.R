@@ -10,17 +10,17 @@
   dat <- readRDS("Data files/ALA/master data/master grass records.rds")  
   
 # species richness and predictor varaibles
-  spp_pv <- read.csv("Results/csv/spp predictor variables 1102.csv")
+  spp_pv <- read.csv("Results/csv/spp predictor variables 1104.csv")
   
 # raster
-  aus <- raster("Data files/Australia/Australia 100 km pewc.grd")
+  aus <- raster("Data files/Australia/Australia 1136.grd")
   
 # data columns: 
 # fo = first occurence (grand species mean)
 # cells_occ_all = % cells >=1 records
 # cells_occ_15 = % cells >=15 records
 # hii_cor = correlation with human impacts
-  df <- data.frame(spp = names(spp_pv[, c(1,2, 4, 5)]),
+  df <- data.frame(spp = names(spp_pv[1:6]),
                          fo = NA,
                          cell_occ_all = NA,
                          cell_occ_15 = NA,
@@ -53,11 +53,11 @@
 # native (C3, C4, total)
   df$fo[1] <- pp_fun("C3", "native")
   df$fo[2] <- pp_fun("C4", "native")
-  #df$fo[3] <- total_fun("native")
+  df$fo[3] <- total_fun("native")
 # nonnative (C3, C4, total)    
-  df$fo[3] <- pp_fun("C3", "nonnative")
-  df$fo[4] <- pp_fun("C4", "nonnative")
-  #df$fo[6] <- total_fun("nonnative")
+  df$fo[4] <- pp_fun("C3", "nonnative")
+  df$fo[5] <- pp_fun("C4", "nonnative")
+  df$fo[6] <- total_fun("nonnative")
  
   df  
 

@@ -10,26 +10,27 @@
   rm(list = ls()) 
 
 # data -----------------------------------------------------------------------
-  dat <- read.csv("Results/csv/predictor variables 2538.csv", header = T) %>%
-         select(-cell_id, -lat, -long, -cell_category, -proportion_cover)
+## from Poaceae project
+  
+# all predictor variables
+  pv <- read.csv("C:/Users/s436862/Dropbox/Poaceae/Results/csv/predictor variables 2538.csv") %>%
+           dplyr::select(-cell_id, -lat, -long, -cell_category, -proportion_cover)
  
-# variable selection  
-  vs <- dat %>% 
-        dplyr::select(pcoldq, pwarmq, amt, ts, arid, pewc, th, hii)
+# variable selection predictors
+  vs <- pv %>% dplyr::select(pcoldq, pwarmq, amt, ts, arid, clay, th)
   
 # correlation matrix -------------------------------------------------------
-  pcor <- round(cor(dat, method = "pearson"), 2)
-  write.csv(pcor, "Results/csv/predictor variable correlation matrix.csv")  
+  pv_cor <- round(cor(pv, method = "pearson", use = "complete.obs"), 2)
+  write.csv(pv_cor, "results/csv/all predictor variable correlation matrix.csv")  
   
 # reduced EVs on account of variable selection 
-  pcor_vs <- round(cor(vs, method = "pearson"), 2)
+  pcor_vs <- round(cor(vs, method = "pearson", use = "complete.obs"), 2)
   write.csv(pcor_vs, "Results/csv/variable selection correlation matrix.csv")  
-  
-
   
 # PCA ------------------------------------------------------------------------------
 # complete EV data set
-  res.pca <- prcomp(dat, scale = F)
+  dat2 <- dat %>% drop_na()
+  res.pca <- prcomp(dat2, scale = F) # start here
   
   fviz_pca_var(res.pca,
                col.var = "contrib", # Color by contributions to the PC

@@ -10,24 +10,21 @@
 # model data
   load("Data files/rdata/models.RData")
   
-# load observed rasters
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/rasters/scaled")
-  current.list <- list.files(pattern = ".grd")
-  names <- gsub(pattern = "\\.grd$", "", current.list)
+# observed richness
+  current.list <- list.files(path = "Results/rasters/scaled",
+                             pattern = ".grd", full.names = T)
+  names <- gsub(pattern = "Results/rasters/scaled/|.grd$", "", current.list)
   c.stack <- stack(current.list)
   names(c.stack) <- names
   list2env(setNames(unstack(c.stack), names(c.stack)), .GlobalEnv)
-  spp <- as.data.frame(c.stack, na.rm = F)
   
-# load predicted rasters
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Results/rasters/predicted")
-  current.list <- list.files(pattern = ".grd")
-  names <- gsub(pattern = "\\.grd$", "", current.list)
+# predicted richness
+  current.list <- list.files(path = "Results/rasters/predicted",
+                             pattern = ".grd", full.names = T)
+  names <- gsub(pattern = "Results/rasters/predicted/|.grd$", "", current.list)
   c.stack <- stack(current.list)
   names(c.stack) <- names
   list2env(setNames(unstack(c.stack), names(c.stack)), .GlobalEnv)
-  spp <- as.data.frame(c.stack, na.rm = F)
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
   
 # r2 ----------------------------------------------------------------------
   adj_r2 <- function(obs_raster, pred_raster){
@@ -36,7 +33,7 @@
     r_squared = 1 - sum((y - yhat)^2, na.rm = T) / sum((y - mean(y, na.rm = T))^2, na.rm = T)
     r_squared
     
-  # adjusted for being shifty
+  # adjusted for number of variables
     n <- length(na.omit(y))
     p <- 9
     adj_r_squared = 1 - (1 - r_squared) * ((n - 1)/(n - p - 1))

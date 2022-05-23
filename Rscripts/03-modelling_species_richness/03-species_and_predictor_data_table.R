@@ -9,15 +9,14 @@
 
 # data ----------------------------------------------------------------
 # observed richness
-  setwd("Results/rasters/scaled")
-  current.list <- list.files(pattern = ".grd")
-  names <- gsub(pattern = "\\.grd$", "", current.list)
+  current.list <- list.files(path = "Results/rasters/scaled",
+                             pattern = ".grd", full.names = T)
+  names <- gsub(pattern = "Results/rasters/scaled/|.grd$", "", current.list)
   c.stack <- stack(current.list)
   names(c.stack) <- names
   list2env(setNames(unstack(c.stack), names(c.stack)), .GlobalEnv)
   spp_df <- as.data.frame(c.stack)
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
-
+  
 # environmental data
 # retained from varaible selection process
   pv_vs <- c("cell_id", "cell_category", "proportion_cover", "lat", "long", "amt", "arid", "ts", "pwarmq", "pcoldq", "pewc", "th", "hii")

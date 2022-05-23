@@ -6,15 +6,12 @@
   rm(list = ls())
   
 # data ---------------------------------------------------------------------------------  
-  setwd("Data files/predictor variables/cropped")
-  
-  files <- list.files(pattern = ".grd")
-  names <- gsub(pattern = ".grd", "", files)
+  files <- list.files(path = "Data files/predictor variables/cropped",
+                      pattern = ".grd", full.names = T)
+  names <- gsub(pattern = "Data files/predictor variables/cropped/|.grd", "", files)
+  names
   stack <- stack(files) # ignore error message
   list2env(setNames(unstack(stack), names), .GlobalEnv)
-  
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
-  
   
 # scale resolution from 1 km to 100 km -------------------------------------
 # note: aggregate resisted my loop charms
@@ -79,13 +76,16 @@
   twarmq_ag <- aggregate(twarmq, fact = 100, fun = mean)
   writeRaster(twarmq_ag, "Results/rasters/predictor variables/twarmq", overwrite = T)
   
-# twetq, clay, hii
+# twetq, clay, hii, ghm
   twetq_ag <- aggregate(twetq, fact = 100, fun = mean)
   writeRaster(twetq_ag, "Results/rasters/predictor variables/twetq", overwrite = T)
   clay_ag <- aggregate(clay, fact = 100, fun = mean)
   writeRaster(clay_ag, "Results/rasters/predictor variables/clay", overwrite = T)
   hii_ag <- aggregate(hii, fact = 100, fun = mean)
   writeRaster(hii_ag, "Results/rasters/predictor variables/hii", overwrite = T)
+  ghm_ag <- aggregate(ghm, fact = 100, fun = mean)
+  writeRaster(ghm_ag, "Results/rasters/predictor variables/ghm", overwrite = T)
+  
   
 # topographic heterogeneity
   th <- aggregate(elev, fact = 100, fun = sd)

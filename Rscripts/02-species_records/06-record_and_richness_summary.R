@@ -16,19 +16,6 @@
   
   aus <- raster("Data files/Australia/Australia 1104.grd")
   
-# crop records ----------------------------------------------------
-  xy <- cbind(ala$longitude, ala$latitude)
-  cell <- raster::extract(aus, xy)
-  
-  table(cell, exclude = NULL)
-  
-  ala$aus_record <- ifelse(!is.na(cell), "yes", "no")
-  table(ala$aus_record, exclude = NULL)
-  
-  ala2 <- ala %>% 
-    filter(aus_record == "yes") %>%
-    droplevels()
-  
 # records, raw species richness --------------------------------------------
   spp_no <- dat %>% 
             group_by(status, pp) %>%

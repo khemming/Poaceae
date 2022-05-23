@@ -11,31 +11,29 @@
   temp <- raster("Data files/Australia/Australia 1 km.grd")
   
 # wrldclim variables
-  setwd("./Data files/predictor variables/raw files/wrldclim")
   my_names <- c("amt",    "mdr",   "iso",    "ts",    "twarmm", 
                 "tcoldm", "tar",   "twetq",  "tdryq", "twarmq", 
                 "tcoldq", "ap",    "pwetm",  "pdrym", "ps",     
                 "pwetq",  "pdryq", "pwarmq", "pcoldq")
-  wrldclim_files <- list.files(pattern = "bio_")
+  wrldclim_files <- list.files(path = "Data files/predictor variables/raw files/wrldclim",
+                               pattern = "bio_", full.names = T)
   wc_stack <- stack(wrldclim_files)
   list2env(setNames(unstack(wc_stack), my_names), .GlobalEnv)
   
-  setwd("C:/Users/s436862/Dropbox/Poaceae/Data files/predictor variables/raw files")
-  
 # predictor variables
-  arid <- raster("aridity/hdr.adf")
-  elev <- raster("elevation/GloElev_30as.asc")
-  pet <- raster("potential evapo-transpiration/hdr.adf")
-  hii <- raster("human influence index/hdr.adf")
-  st <- raster("potential storage of water/wrtext.asc")
-  rz <- raster("potential storage of water/wrroot.asc")
-  sp <- raster("potential storage of water/wrprof.asc")
-  pawc <- raster("potential water capacity/hdr.adf")
-  pewc <- raster("potential water capacity/dunne_soil.dat")
-  clay <- raster("clay/clay30/clay30/hdr.adf")
+  arid <- raster("Data files/predictor variables/raw files/aridity/hdr.adf")
+  elev <- raster("Data files/predictor variables/raw files/elevation/GloElev_30as.asc")
+  pet <- raster("Data files/predictor variables/raw files/potential evapo-transpiration/hdr.adf")
+  hii <- raster("Data files/predictor variables/raw files/human influence index/hdr.adf")
+  st <- raster("Data files/predictor variables/raw files/potential storage of water/wrtext.asc")
+  rz <- raster("Data files/predictor variables/raw files/potential storage of water/wrroot.asc")
+  sp <- raster("Data files/predictor variables/raw files/potential storage of water/wrprof.asc")
+  pawc <- raster("Data files/predictor variables/raw files/potential water capacity/hdr.adf")
+  pewc <- raster("Data files/predictor variables/raw files/potential water capacity/dunne_soil.dat")
+  clay <- raster("Data files/predictor variables/raw files/clay/clay30/clay30/hdr.adf")
+  ghm <- raster("Data files/predictor variables/raw files/global human modification/ghm_3.grd")
 
-  setwd("C:/Users/s436862/Dropbox/Poaceae")
-  
+
 # crop to Australia -----------------------------------------------------
 # files with 1 km resolution --------------------------------------------
   crop_1km_fun <- function(raw_raster, raster_name) {
@@ -86,7 +84,8 @@
   crop_1km_fun(twarmq, "twarmq")
   
   crop_1km_fun(twetq, "twetq")
-  
+  crop_1km_fun(ghm, "ghm")
+ 
 # crop to 1 km for >1km resolution rasters  --------------------------------------------
   crop_hi_res_fun <- function(raw_raster, raster_name) {
   
@@ -124,8 +123,8 @@
 
   crop_hi_res_fun(clay, "clay")
   
-# HII crop function ---------------------------------------------
-# due to extent diufferences, it needs its own function
+# HII and GHM crop function ---------------------------------------------
+# due to extent diufferences, need their own function
   crop_hii <- function(raw_raster, raster_name) 
   {
   # set things up
@@ -153,6 +152,7 @@
     writeRaster(masked_raster, save, overwrite = T)
   } # fun end
 
-  crop_hii(hii_v2, "hii")
+  crop_hii(hii, "hii")
+  crop_hii(ghm, "ghm")
   
-# ------------------------------------------------  
+# ---------------------------------------------------  
